@@ -38,9 +38,6 @@
     <QtMoc Include="ItemWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ItemJoint.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,10 +49,16 @@
     <ClCompile Include="itemArrowLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ItemJoint.cpp">
+    <ClCompile Include="ItemTittle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ItemTittle.cpp">
+    <ClCompile Include="JointLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JointContent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JointItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,6 +67,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ItemTittle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JointLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JointContent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JointItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

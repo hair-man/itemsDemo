@@ -1,4 +1,4 @@
-#include <cmath>
+ï»¿#include <cmath>
 #include <QDebug>
 #include "itemArrowLine.h"
 
@@ -7,16 +7,16 @@
 ArrowItem::ArrowItem(ItemWidget* startI, ItemWidget* endI, QGraphicsItem* parent) :
     QGraphicsLineItem(parent)
 {
-    m_pendItem = endI; //Æğµãitem
-    m_pStartItem = startI; //ÖÕµãitem
-    this->setZValue(m_pStartItem->zValue() - 1); //Ä¿µÄ£ºÈÃ¼ıÍ·ºóÖÃ
+    m_pendItem = endI; //èµ·ç‚¹item
+    m_pStartItem = startI; //ç»ˆç‚¹item
+    this->setZValue(m_pStartItem->zValue() - 1); //ç›®çš„ï¼šè®©ç®­å¤´åç½®
     setFlag(QGraphicsItem::ItemIsSelectable);
     setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 }
 
 QRectF ArrowItem::boundingRect() const
 {
-    //item»æÖÆÇøÓòµÄ¹À¼ÆÖµ
+    //itemç»˜åˆ¶åŒºåŸŸçš„ä¼°è®¡å€¼
     qreal extra = (this->pen().width() + 20) / 2;
     return QRectF(line().p1(), QSizeF(line().p2().x() - line().p1().x(), line().p2().y() - line().p1().y()))
         .normalized().adjusted(-extra, -extra, extra, extra);
@@ -25,7 +25,7 @@ QRectF ArrowItem::boundingRect() const
 void ArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
 
-    if (m_pStartItem->collidesWithItem(m_pendItem))//ÅĞ¶ÏÍ¼ĞÎÏîÊÇ·ñ´æÔÚÏà½»
+    if (m_pStartItem->collidesWithItem(m_pendItem))//åˆ¤æ–­å›¾å½¢é¡¹æ˜¯å¦å­˜åœ¨ç›¸äº¤
         return;
     QPen pen(Qt::black);
     painter->setPen(pen);
@@ -33,27 +33,27 @@ void ArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
     painter->setBrush(Qt::black);
     qreal arrowsize = 10;
     
-    /* pos ÊÇÏàµ±ÓÚsceneµÄ×ø±ê */
+    /* pos æ˜¯ç›¸å½“äºsceneçš„åæ ‡ */
     //QLineF centerLine(m_pStartItem->pos(), m_pendItem->pos());
-    //qDebug() << m_pStartItem->pos() << m_pendItem->pos();    //´Ë´¦´òÓ¡µÄ¾ÍÊÇÓë pItem->setPos(300, 300); ÉèÖÃ±£³ÖµÄÒ»ÖÂ
-    //                                                         //µ«ÊÇĞèÒª½«Õâ¸ö×ø±êµãÒÆ¶¯µ½itemµÄÖĞĞÄËùÒÔĞèÒª¶Ôpos½øĞĞµ÷Õû
+    //qDebug() << m_pStartItem->pos() << m_pendItem->pos();    //æ­¤å¤„æ‰“å°çš„å°±æ˜¯ä¸ pItem->setPos(300, 300); è®¾ç½®ä¿æŒçš„ä¸€è‡´
+    //                                                         //ä½†æ˜¯éœ€è¦å°†è¿™ä¸ªåæ ‡ç‚¹ç§»åŠ¨åˆ°itemçš„ä¸­å¿ƒæ‰€ä»¥éœ€è¦å¯¹posè¿›è¡Œè°ƒæ•´
     QLineF centerLine(m_pStartItem->pos() + QPointF(m_pStartItem->boundingRect().width() / 2, m_pStartItem->boundingRect().height() / 2)
         , m_pendItem->pos() + QPointF(m_pendItem->boundingRect().width() / 2, m_pendItem->boundingRect().height() / 2));
 
 
 
-    QPolygonF endPolygon = m_pendItem->shape().toFillPolygon();//»ñÈ¡itemµÄµã×éºÏ£¨±Õ»·Â·£©
-    QPointF p1 = endPolygon.first() + m_pendItem->pos();//itemµÄ×óÉÏ·½µã  + itemÔÚ³¡¾°µÄÎ»ÖÃµã£¨Æ«ÒÆµÃµ½×óÉÏµãÔÚ³¡¾°ÖĞµÄÎ»ÖÃ£©
+    QPolygonF endPolygon = m_pendItem->shape().toFillPolygon();//è·å–itemçš„ç‚¹ç»„åˆï¼ˆé—­ç¯è·¯ï¼‰
+    QPointF p1 = endPolygon.first() + m_pendItem->pos();//itemçš„å·¦ä¸Šæ–¹ç‚¹  + itemåœ¨åœºæ™¯çš„ä½ç½®ç‚¹ï¼ˆåç§»å¾—åˆ°å·¦ä¸Šç‚¹åœ¨åœºæ™¯ä¸­çš„ä½ç½®ï¼‰
     QPointF p2;
     QPointF intersectPoint;
     QLineF polyLine;
     for (int i = 1; i < endPolygon.count(); ++i)
     {
-        p2 = endPolygon.at(i) + m_pendItem->pos();//Æ«ÒÆµÃµ½³¡¾°ÖĞµÄÎ»ÖÃµã
-        polyLine = QLineF(p1, p2);//Á½µã¹¹³ÉÖ±Ïß
+        p2 = endPolygon.at(i) + m_pendItem->pos();//åç§»å¾—åˆ°åœºæ™¯ä¸­çš„ä½ç½®ç‚¹
+        polyLine = QLineF(p1, p2);//ä¸¤ç‚¹æ„æˆç›´çº¿
 
         QLineF::IntersectType intersectType =
-            polyLine.intersect(centerLine, &intersectPoint);//Á½ÌõÏß±È½ÏÊÇ·ñÓĞ½»¼¯   ´æÔÚ
+            polyLine.intersect(centerLine, &intersectPoint);//ä¸¤æ¡çº¿æ¯”è¾ƒæ˜¯å¦æœ‰äº¤é›†   å­˜åœ¨
         if (intersectType == QLineF::BoundedIntersection)
         {
             //painter->drawLine(polyLine);
@@ -63,14 +63,14 @@ void ArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
     }
 
     painter->setPen(Qt::black);
-    /* ´Ë´¦ÖØĞÂÉèÖÃÁËÏßµÄÆğµã ºÍ ÖÕµã*/
+    /* æ­¤å¤„é‡æ–°è®¾ç½®äº†çº¿çš„èµ·ç‚¹ å’Œ ç»ˆç‚¹*/
     setLine(QLineF(intersectPoint, m_pStartItem->pos() + QPointF(m_pStartItem->boundingRect().width() / 2, m_pStartItem->boundingRect().height() / 2)));
     //setLine(QLineF(m_pStartItem->pos() + QPointF(m_pStartItem->boundingRect().width() / 2, m_pStartItem->boundingRect().height() / 2), intersectPoint));
 
-    double angle = std::atan2(-line().dy(), line().dx()); //·´ÕıÇĞ [-PI,PI]
+    double angle = std::atan2(-line().dy(), line().dx()); //åæ­£åˆ‡ [-PI,PI]
     QPointF arrowP1 = line().p1() +
-        QPointF(sin(angle + M_PI / 3) * arrowsize, //¼ÆËã¶Ô±ß
-            cos(angle + M_PI / 3) * arrowsize); //¼ÆËãÁÙ±ß
+        QPointF(sin(angle + M_PI / 3) * arrowsize, //è®¡ç®—å¯¹è¾¹
+            cos(angle + M_PI / 3) * arrowsize); //è®¡ç®—ä¸´è¾¹
     QPointF arrowP2 = line().p1() +
         QPointF(sin(angle + M_PI - M_PI / 3) * arrowsize,
             cos(angle + M_PI - M_PI / 3) * arrowsize);

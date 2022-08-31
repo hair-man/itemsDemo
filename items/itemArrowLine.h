@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include <QGraphicsLineItem>
@@ -14,12 +14,12 @@ class ArrowItem : public QGraphicsLineItem
 public:
     enum { Type = UserType + 4 };
 
-    //¹¹Ôìº¯Êı(Á½¸öitem²ÎÊı)
+    //æ„é€ å‡½æ•°(ä¸¤ä¸ªitemå‚æ•°)
     ArrowItem(ItemWidget* startI, ItemWidget* endI, QGraphicsItem* parent = nullptr);
 
-    //item»æÖÆÇøÓòµÄ¹À¼ÆÖµ
+    //itemç»˜åˆ¶åŒºåŸŸçš„ä¼°è®¡å€¼
     QRectF boundingRect() const override;
-    //Êµ¼Ê»æÖÆ
+    //å®é™…ç»˜åˆ¶
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr)override;
 
     int type() const override { return Type; }

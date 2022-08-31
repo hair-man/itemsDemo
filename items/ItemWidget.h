@@ -1,4 +1,4 @@
-#pragma once
+О╩©#pragma once
 
 #include <QPen>
 #include <QBrush>
@@ -10,6 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 
 #include "ItemTittle.h"
+#include "JointLayout.h"
 
 class ItemWidget : public QGraphicsObject
 {
@@ -24,18 +25,23 @@ public:
     };
 
     enum MPOS {
-        LT_POS= 0,   // вСио
-        CT_POS,      // ио
-        RT_POS,      // срио
-        CL_POS,      // вС
-        CR_POS,      // ср
-        LB_POS,      // вСоб
-        CB_POS,      // об
-        RB_POS       // сроб
+        LT_POS= 0,   // Е╥╕Д╦┼
+        CT_POS,      // Д╦┼
+        RT_POS,      // Е▐ЁД╦┼
+        CL_POS,      // Е╥╕
+        CR_POS,      // Е▐Ё
+        LB_POS,      // Е╥╕Д╦▀
+        CB_POS,      // Д╦▀
+        RB_POS       // Е▐ЁД╦▀
     };
 
     ItemWidget(int itemType, QGraphicsItem* parent = NULL);
     ~ItemWidget();
+
+
+
+    JointContent* addJoint(int direction);
+
 
 public:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr);
@@ -57,7 +63,7 @@ private:
 
     int mItemType;
     
-    // м╪пн╣д╠ъ©Р
+    // Е⌡╬Е╫╒Г └Х╬╧Ф║├
     QRect        mRect;
     QPoint mResizePos[8];
 
@@ -69,5 +75,9 @@ private:
 
 
     ItemTittle* mpTittle;
+
+    JointLayout* mpJointLayout;
+    QList<JointContent*> mJointContentList;
+
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QObject>
 #include <QPainter>
@@ -24,12 +24,12 @@ private:
     qreal mWidth;
     qreal mHeight;
 
-    /* ±êÌâÑÕÉ«½¥±ä */
+    /* æ ‡é¢˜é¢œè‰²æ¸å˜ */
     QColor mLeftColor;
     QColor mRightColor;
     QPen mGaoGuangPen;
 
-    /* ±êÌâÔ²½Ç */
+    /* æ ‡é¢˜åœ†è§’ */
     qreal mRoundnes;
     
     QString mTittleText;

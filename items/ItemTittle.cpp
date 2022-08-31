@@ -1,4 +1,4 @@
-#include <QICon>
+ï»¿#include <QICon>
 #include <QPixmap>
 #include <QRegion>
 #include <QColor>
@@ -18,19 +18,19 @@ ItemTittle::ItemTittle(int width, int height, QGraphicsItem* parent)
 
 void ItemTittle::ItemTittleInit()
 {
-    /* ·¢ÁÁ±ßÔµÔ²½Ç¶ÈÊý */
+    /* å‘äº®è¾¹ç¼˜åœ†è§’åº¦æ•° */
     mRoundnes = 10.0;
 
-    /* ±êÌâÀ¸×ó±ßÑÕÉ«#4c748d */
+    /* æ ‡é¢˜æ å·¦è¾¹é¢œè‰²#4c748d */
     mLeftColor = QColor("#4c748d");
-    /* ±êÌâÀ¸ÓÒ±ßÑÕÉ«#FF424342 */
+    /* æ ‡é¢˜æ å³è¾¹é¢œè‰²#FF424342 */
     mRightColor = QColor("#4D4c748d");
 
-    /* °×É«¸ß¹â */
+    /* ç™½è‰²é«˜å…‰ */
     mGaoGuangPen = QPen(QColor("#C8FFFFFF"));
     mGaoGuangPen.setWidthF(1.0);
 
-    /* ÎÄ×ÖÑÕÉ« */
+    /* æ–‡å­—é¢œè‰² */
     mTextPen = QPen(QColor("#eeeeee"));
     mTextFont = QFont("SimHei", 13, QFont::Bold);
 
@@ -80,7 +80,7 @@ void ItemTittle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option
     painter->setBrush(lg);
     painter->drawPath(path_content1.simplified());
 
-    /* »æÖÆ¸ß¹â */
+    /* ç»˜åˆ¶é«˜å…‰ */
     painter->setClipRegion(QRegion(0, 2, mWidth, mRoundnes - 5));
     QPainterPath path_content = QPainterPath();
     path_content.addRoundedRect(3, 2, mWidth - 6, mHeight - 1, mRoundnes + 2, mRoundnes + 2);
@@ -89,11 +89,11 @@ void ItemTittle::paint(QPainter* painter, const QStyleOptionGraphicsItem* option
     painter->drawPath(path_content.simplified());
     painter->setClipRegion(QRegion(0, 0, mWidth, mHeight));
         
-    /* »æÖÆÍ¼Æ¬ */
+    /* ç»˜åˆ¶å›¾ç‰‡ */
     painter->drawPixmap(12, 8, 18, 18, mPixIco);
     painter->drawPixmap(12, 0, 150, 39, mPixBackground);
 
-    /* »æÖÆÎÄ×Ö */
+    /* ç»˜åˆ¶æ–‡å­— */
     painter->setFont(mTextFont);
     painter->setPen(mTextPen);
     painter->drawText(35, 23, mTittleText);

@@ -89,7 +89,9 @@
     <ClCompile Include="itemArrowLine.cpp" />
     <ClCompile Include="ItemTittle.cpp" />
     <ClCompile Include="ItemWidget.cpp" />
-    <ClCompile Include="ItemJoint.cpp" />
+    <ClCompile Include="JointContent.cpp" />
+    <ClCompile Include="JointItem.cpp" />
+    <ClCompile Include="JointLayout.cpp" />
     <ClCompile Include="MainWidget.cpp" />
     <ClCompile Include="main.cpp" />
     <None Include="MainWidget.ico" />
@@ -101,7 +103,9 @@
   <ItemGroup>
     <ClInclude Include="itemArrowLine.h" />
     <ClInclude Include="ItemTittle.h" />
-    <QtMoc Include="ItemJoint.h" />
+    <ClInclude Include="JointContent.h" />
+    <ClInclude Include="JointItem.h" />
+    <ClInclude Include="JointLayout.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

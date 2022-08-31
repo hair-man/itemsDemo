@@ -1,4 +1,4 @@
-#include "ItemWidget.h"
+ï»¿#include "ItemWidget.h"
 
 #include <QCursor>
 #include <QDebug>
@@ -31,20 +31,20 @@ void ItemWidget::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
         qDebug() << event->pos();
 
         switch (index) {
-        case 0:     // ×óÉÏ
-        case 7:     // ÓÒÏÂ
+        case 0:     // å·¦ä¸Š
+        case 7:     // å³ä¸‹
             this->setCursor(Qt::SizeFDiagCursor);
             break;
-        case 5:      // ×óÏÂ
-        case 2:      // ÓÒÉÏ
+        case 5:      // å·¦ä¸‹
+        case 2:      // å³ä¸Š
             this->setCursor(Qt::SizeBDiagCursor);
             break;
-        case 1:       // ÉÏ
-        case 6:       // ÏÂ
+        case 1:       // ä¸Š
+        case 6:       // ä¸‹
             this->setCursor(Qt::SizeVerCursor);
             break;
-        case 3:      // ×ó
-        case 4:      // ÓÒ
+        case 3:      // å·¦
+        case 4:      // å³
             this->setCursor(Qt::SizeHorCursor);
             break;
         default:
@@ -204,11 +204,29 @@ void ItemWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 }
 
 
+JointContent* ItemWidget::addJoint(int direction)
+{
+    /* """ç»™èŠ‚ç‚¹å†…å®¹å¢žåŠ ç«¯å£
+        : param data_type : èŠ‚ç‚¹è¡¨ç¤ºçš„å˜é‡çš„æ•°æ®ç±»åž‹ï¼ˆæ•´åž‹ / å­—ç¬¦ä¸²ï¼‰
+        : param direction : éœ€è¦åœ¨èŠ‚ç‚¹è¾“(å…¥ / å‡º)ä¾§æ·»åŠ ç«¯å£
+        : param logic_type : èŠ‚ç‚¹è¡¨ç¤ºçš„å˜é‡çš„é€»è¾‘ç±»åž‹ï¼ˆæ•°æ® / é€»è¾‘ï¼‰
+        """
+        */
+
+    JointContent* pJoint = new JointContent(direction, this);
+
+    mJointContentList.append(pJoint);
+
+    mpJointLayout->setJointsLocation(mJointContentList);
+
+    return pJoint;
+}
+
 ItemWidget::ItemWidget(int itemType, QGraphicsItem* parent)
     :QGraphicsObject(parent)
     ,mItemType(itemType)
 {
-    // ½ÓÊÕÊó±êÐü¸¡ÊÂ¼þ
+    // æŽ¥æ”¶é¼ æ ‡æ‚¬æµ®äº‹ä»¶
     this->setAcceptHoverEvents(true);
     _resizeHandle = -1;
 
@@ -216,6 +234,15 @@ ItemWidget::ItemWidget(int itemType, QGraphicsItem* parent)
     mRect = QRect(0, 0, 200, 100);
 
     mpTittle = new ItemTittle(mRect.width(), 38, this);
+
+    mpJointLayout = new JointLayout(this);
+
+    addJoint(0);
+    addJoint(0);
+    addJoint(0);
+    addJoint(1);
+    addJoint(1);
+    addJoint(1);
 }
 
 ItemWidget::~ItemWidget()
@@ -240,16 +267,16 @@ void ItemWidget::paint(QPainter* painter, const QStyleOptionGraphicsItem* option
     switch (mItemType)
     {
     case ItemWidget::YTHCLIENT:
-        painter->drawText(0, 20, QString::fromWCharArray(L"¿Í»§¶Ë"));
+        painter->drawText(0, 20, QString::fromWCharArray(L"å®¢æˆ·ç«¯"));
         break;
     case ItemWidget::IPDEV:
-        painter->drawText(0, 20, QString::fromWCharArray(L"IP³ÌÐò"));
+        painter->drawText(0, 20, QString::fromWCharArray(L"IPç¨‹åº"));
         break;
     case ItemWidget::VOIP:
-        painter->drawText(0, 20, QString::fromWCharArray(L"ÊÓÆµ"));
+        painter->drawText(0, 20, QString::fromWCharArray(L"è§†é¢‘"));
         break;
     default:
-        painter->drawText(0, 20, QString::fromWCharArray(L"×Ô¶¨Òå"));
+        painter->drawText(0, 20, QString::fromWCharArray(L"è‡ªå®šä¹‰"));
         break;
     }
 
